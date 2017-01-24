@@ -1,14 +1,27 @@
 osmosis = require "osmosis"
 conf = require "./config.json"
+state = []
 
 console.log "Starting parser for " + conf.user
 
 parse = (user,pass) ->
+	tmp = []
 	osmosis
-		.get('https://www.facebook.com/groups/352110954925626/')
-		.filter("div","/mall_post/")
-		.data(console.log)
+		.get('https://m.facebook.com/groups/352110954925626/')
+		.find('._55wo:last(9):first(8)')
+		.set('articles')
+		.data((data)->tmp.push data)
 		.error(console.log)
 		.log(console.log)
+		.done((=>checkState(tmp)))
+		# .done((=>console.log tmp))
+checkState = (tmp) ->
+	console.log tmp
+	if JSON.stringify tmp != JSON.stringify state
+		console.log "Something Changed"
+		state = tmp
+		console.log state
 
-parse(conf.user,conf.pass)
+
+
+setInterval (-> parse()), 2000
