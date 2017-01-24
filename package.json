@@ -1,0 +1,27 @@
+{
+  "name": "ticket-track",
+  "version": "1.0.0",
+  "description": "Buy/Sell fb pages tracking",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedsm/TicketTrack.git"
+  },
+  "keywords": [
+    "Tracking",
+    "Parser"
+  ],
+  "author": "Pedro Mendonca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pedsm/TicketTrack/issues"
+  },
+  "homepage": "https://github.com/pedsm/TicketTrack#readme",
+  "dependencies": {
+    "mocha": "^3.2.0",
+    "osmosis": "^1.1.2"
+  }
+}
