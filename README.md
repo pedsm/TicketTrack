@@ -23,6 +23,16 @@ To run the program you need to make a config.json file. Just make a file called 
 ```
 You can add and remove keywords as you like make sure you have commas in between them, and all keywords do not contain spaces.
 
+## Usage
+To use it run the program either with node or coffee either use
+```bash
+	node index.js
+```
+or
+```bash
+	coffee index.coffee
+```
+
 ### Facebook related problems.
 Unfortunately Facebook access tokens have an will expire after a certain amount of time, you can always make more but if you start getting errors you will have to create another one on the same page. If this is a major problem I could implement Facebook login inside the application.
 
