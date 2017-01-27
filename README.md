@@ -26,10 +26,12 @@ You can add and remove keywords as you like make sure you have commas in between
 ## Usage
 To use it run the program either with node or coffee either use
 ```bash
+	npm install
 	node index.js
 ```
 or
 ```bash
+	npm install
 	coffee index.coffee
 ```
 
