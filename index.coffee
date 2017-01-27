@@ -2,30 +2,26 @@ osmosis = require "osmosis"
 conf = require "./config.json"
 chalk = require 'chalk'
 rainbow = require 'chalk-rainbow'
-state = [{name:"you what fam", text:"you what"}]
+request = require 'request'
+parseString = require 'xml2js'
+parseString = parseString.parseString
+state = [{author:[{name:["you what fam"], text:"you what"}]}]
 
 console.log chalk.blue "Starting tracker for "
 for word in conf.keywords
 	console.log word
 
-parse = (user,pass) ->
+parse = ->
 	tmp = []
-	osmosis
-		.get('https://m.facebook.com/groups/352110954925626/?view=group')
-		.find('._55wo:last(9):first(8)')
-		.config("concurrency","1")
-		.set({name:"div>", desc:"span:skip(1)"})
-		.data((data)->tmp.push data)
-		.error(console.log)
-		.log(console.log)
-		.done((=>console.log tmp))
-		# .done((=>checkState(tmp)))
+	xml = ""
+	request('https://graph.facebook.com/352110954925626/feed?access_token=' + conf.token,((error,response,body)-> checkState (JSON.parse body)))
+
 checkState = (tmp) ->
-	console.log tmp
-	if tmp[1].name != state[1].name
-		console.log "New post"
-		state = tmp
-		console.log state[0]
+	console.log tmp.data
+	# console.log data[0].from.name
+	# if tmp[0].author[0].name[0] != state[0].author[0].name[0]
+	# 	state = tmp
+	# 	console.log "New post by " + state[0].author[0].name[0]
 	# for post in state
 	# 	words = post.desc.split " "
 	# 	for word in words
@@ -33,5 +29,5 @@ checkState = (tmp) ->
 	# 			if word == key
 	# 				console.log chalk.rainbow('Found '+ key +" in post by: " + post.name)
 
-# parse()
-setInterval (-> parse()), 5000
+parse()
+# setInterval (-> parse()), 3000
